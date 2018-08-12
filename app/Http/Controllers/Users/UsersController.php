@@ -61,7 +61,7 @@ class UsersController extends Controller
 
     }
     /**
-     * Get 20 random records from input array , delete these records from cache and resort the array and return this 20 records
+     * Get 25 random records from input array , delete these records from cache and resort the array and return this 20 records
      *
      * @param array $friends The records from cache
      *
@@ -71,7 +71,7 @@ class UsersController extends Controller
     private function getFriendsByCache($friends)
     {
         $displayedFriends = [];
-        $keys = $this->UniqueRandomNumbersWithinRange(0, count($friends) - 1, 20);
+        $keys = $this->UniqueRandomNumbersWithinRange(0, count($friends) - 1, config('friends.countRecords'));
         foreach ($keys as $k) {
             $displayedFriends[] = $friends[$k];
 

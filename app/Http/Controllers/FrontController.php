@@ -44,9 +44,12 @@ class FrontController extends Controller
         $flagChangedLanguage = 0;
         $clearData = 0;
         if($request->session()->get('language') == null || $request->session()->get('language') != $request->language){
+            if($request->session()->get('language') != $request->language) {
+                $flagChangedLanguage = 1;
+                $clearData = 1;
+            }
             $request->session()->put('language', $request->language);
-            $flagChangedLanguage = 1;
-            $clearData = 1;
+
         }
         if($request->session()->get('type') == null ) {
             $request->session()->put('type', $request->type);

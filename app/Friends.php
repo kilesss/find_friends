@@ -9,7 +9,6 @@ class Friends extends Model
 {
     protected $table = 'friends';
     protected $usersTable = 'users';
-    protected $countrows = 25;
     public $timestamps = false;
 
 
@@ -32,7 +31,7 @@ class Friends extends Model
             ->where($this->usersTable . '.country', $language)
             ->groupBy('fr2')
             ->inRandomOrder()
-            ->take($this->countrows)
+            ->take(config('friends.countRecords'))
             ->select('fr2', 'real_name')
             ->get();
         $updateArr = [];
